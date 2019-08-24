@@ -1,0 +1,32 @@
+# Build and distribution folders for .exe creation #
+build/
+dist/
+
+# Cached Python folder *
+__pycache__/
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.pyc
+*.so
+
+# Other random unwanted extensions
+*.spec
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
