@@ -2,8 +2,11 @@
 build/
 dist/
 
-# Cached Python folder *
+# Cached Python and venv directories*
 __pycache__/
+env/
+venv/
+.idea/
 
 # Compiled source #
 ###################

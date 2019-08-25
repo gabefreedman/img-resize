@@ -10,6 +10,7 @@ from tkinter import filedialog
 from tkinter import messagebox
 from image_tools import resize_all
 
+
 class EntryWithPlaceholder(tk.Entry):
     def __init__(self, master=None, placeholder="PLACEHOLDER", color='grey'):
         super().__init__(master)
@@ -36,7 +37,8 @@ class EntryWithPlaceholder(tk.Entry):
         if not self.get():
             self.put_placeholder()
 
-class ImageApp():
+
+class ImageApp:
 
     def __init__(self):
         self.root = tk.Tk()
@@ -80,8 +82,9 @@ class ImageApp():
     def clear_box(self):
         self.identVar.delete(0, tk.END)
         return
+
     def handle_event(self, event):
-      print('Handling an event')
+        print('Handling an event')
     
     def gather_resize_params(self):
         folder = self.folderVar.get()
@@ -103,6 +106,7 @@ class ImageApp():
         border = self.borderVar.get()
         
         resize_all(folder, height, ident, border)
+
 
 if __name__ == '__main__':
     ImageApp()
