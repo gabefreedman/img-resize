@@ -48,7 +48,7 @@ class ImageApp:
         self.folderLabel.grid(column=0, row=0, sticky='EW', padx=4, pady=4)
         self.folderVar = tk.StringVar(None)
         self.folderName = tk.Entry(self.root, textvariable=self.folderVar)
-        self.folderName.grid(column=1,row=0,sticky='EW', padx=4, pady=4)
+        self.folderName.grid(column=1, row=0, sticky='EW', padx=4, pady=4)
         self.folderName.update()
         self.folderName.focus_set()
         
@@ -56,10 +56,10 @@ class ImageApp:
         self.heightLabel.grid(column=0,row=1,sticky='EW', padx=4, pady=4)
         self.heightVar = tk.StringVar(None)
         self.heightEntry = tk.Entry(self.root, bd=1, textvariable=self.heightVar)
-        self.heightEntry.grid(column=1,row=1,sticky='EW', padx=4, pady=4)
+        self.heightEntry.grid(column=1, row=1, sticky='EW', padx=4, pady=4)
     
         self.button = tk.Button(self.root, text='Browse', command=self.browse)
-        self.button.grid(column=2,row=0,sticky='EW', padx=4, pady=4)
+        self.button.grid(column=2, row=0, sticky='EW', padx=4, pady=4)
         
         self.identLabel = tk.Label(self.root, text='Identifier to add to new folder name:')
         self.identLabel.grid(column=0, row=2, sticky='EW', padx=4, pady=4)
@@ -67,11 +67,11 @@ class ImageApp:
         self.identEntry.grid(column=1, row=2, sticky='EW', padx=4, pady=4)
         
         self.borderVar = tk.IntVar(None)
-        self.borderCheck = tk.Checkbutton(self.root, text='Add border? (1px)', variable = self.borderVar)
+        self.borderCheck = tk.Checkbutton(self.root, text='Add border? (1px)', variable=self.borderVar)
         self.borderCheck.grid(column=1, row=3, sticky='EW', padx=4, pady=4)        
         
         self.bigButton = tk.Button(self.root, text='Resize', command=self.gather_resize_params)
-        self.bigButton.grid(column=1,row=4,sticky='EW', padx=4, pady=4)
+        self.bigButton.grid(column=1, row=4, sticky='EW', padx=4, pady=4)
         
         self.root.mainloop()
     

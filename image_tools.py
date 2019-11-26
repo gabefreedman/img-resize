@@ -11,11 +11,12 @@ import PIL
 from ctypes import windll
 from PIL import Image, ExifTags, ImageOps
 
+
 def images_in_dir(folder):
-    ''' Takes in name of directory to search for images. Returns dictionary
+    """ Takes in name of directory to search for images. Returns dictionary
         with key : value pairs of relative_dir : absolute_dir pointing
         to image files.
-    '''
+    """
     valid_extensions = ('.jpg', '.jpeg', '.JPG', '.JPEG')
     
     rel_dir = [file for file in os.listdir(folder) if file.endswith(valid_extensions)]
@@ -26,11 +27,12 @@ def images_in_dir(folder):
     
     return imd
 
+
 def make_parallel_dir(folder, ident):
-    ''' Takes in name of directory containing images. Moves up to parent
+    """ Takes in name of directory containing images. Moves up to parent
         directory and creates new folder named after original directory plus
         an identifying string. Returns new folder path
-    '''
+    """
     
     parent_dir = os.path.normpath(folder + os.sep + os.pardir)
     
@@ -45,9 +47,10 @@ def make_parallel_dir(folder, ident):
     os.mkdir(folder_path)
     return folder_path
 
+
 def get_monitor_dpi():
-    ''' Retrieves DPI value for given monitor
-    '''
+    """ Retrieves DPI value for given monitor
+    """
     
     LOGPIXELSX = 88
     LOGPIXELSY = 90
@@ -55,31 +58,33 @@ def get_monitor_dpi():
     h_dpi = windll.gdi32.GetDeviceCaps(dc, LOGPIXELSX)
     v_dpi = windll.gdi32.GetDeviceCaps(dc, LOGPIXELSY)
     windll.user32.ReleaseDC(0, dc)
-    return (h_dpi, v_dpi)
+    return h_dpi, v_dpi
+
 
 def resize_image(image_tup, new_height, resize_folder, border):
-    ''' Resizes image I hope
-    '''
+    """ Resizes image I hope
+    """
     i = Image.open(image_tup[1])
     
     try:
         for orientation in ExifTags.TAGS.keys(): 
-            if ExifTags.TAGS[orientation]=='Orientation': break 
-        exif=dict(i._getexif().items())
+            if ExifTags.TAGS[orientation] == 'Orientation':
+                break
+        exif = dict(i._getexif().items())
     
         if exif[orientation] == 3: 
-            i=i.rotate(180, expand=True)
+            i = i.rotate(180, expand=True)
         elif exif[orientation] == 6: 
-            i=i.rotate(270, expand=True)
+            i = i.rotate(270, expand=True)
         elif exif[orientation] == 8: 
-            i=i.rotate(90, expand=True)
+            i = i.rotate(90, expand=True)
     except (AttributeError, KeyError, IndexError):
         pass
     
     dpi = get_monitor_dpi()
     orig_size_px = i.size
     
-    aspect_ratio = orig_size_px[0]  / orig_size_px[1]
+    aspect_ratio = orig_size_px[0] / orig_size_px[1]
     
     new_height_px = new_height * dpi[0]
     new_width_px = new_height_px * aspect_ratio
@@ -97,6 +102,7 @@ def resize_image(image_tup, new_height, resize_folder, border):
     i.close()
 
     return
+
 
 def resize_all(folder, new_height, ident, border):
     imd = images_in_dir(folder)
