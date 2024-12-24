@@ -10,6 +10,9 @@ import shutil
 import PIL
 from ctypes import windll
 from PIL import Image, ExifTags, ImageOps
+from pillow_heif import register_heif_opener
+
+register_heif_opener()
 
 
 def images_in_dir(folder):
@@ -17,7 +20,16 @@ def images_in_dir(folder):
     with key : value pairs of relative_dir : absolute_dir pointing
     to image files.
     """
-    valid_extensions = (".jpg", ".jpeg", ".JPG", ".JPEG")
+    valid_extensions = (
+        ".jpg",
+        ".jpeg",
+        ".JPG",
+        ".JPEG",
+        ".heic",
+        ".heif",
+        ".HEIC",
+        ".HEIF",
+    )
 
     rel_dir = [file for file in os.listdir(folder) if file.endswith(valid_extensions)]
 
